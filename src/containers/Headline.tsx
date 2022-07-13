@@ -1,80 +1,98 @@
-import React, {useState, useEffect} from 'react';
-import { StyleSheet, Text, FlatList, View } from 'react-native';
-import {useNavigation} from "@react-navigation/native";
+import React from 'react';
+import {
+  StyleSheet,
+  Text,
+  ScrollView,
+  View,
+  Image,
+  TouchableOpacity,
+  Linking,
+} from 'react-native';
+import moment from 'moment';
+import StoryImage from '../components/StoryImage';
+import {getHeadLine, getImage, renderAuthors} from '../utils/storyUtils';
+import {doorIcon} from '../assets';
 
-const Headline: React.FC = ({story}) => {
-    // const navigation = useNavigation();
-    // console.warn('check details', navigation.getParam(story))
-    return (
-        <View>
-            <Text>Headline</Text>
-            <View style={{
-                borderBottomColor:'red',
-                borderBottomWidth: 1,
-            }}></View>
-            <View>
+interface HeadlineProps {
+  route: any;
+}
 
-            </View>
+const Headline: React.FC<HeadlineProps> = ({route}) => {
+  const story = route.params.story;
+  const getBody = () => {
+    let string = '';
+    for (let i = 0; i < story.blocks.blocks.length; i++) {
+      string = string + story.blocks.blocks[i].text + '\n';
+    }
+    return string;
+  };
+
+  const renderTopics = () => {
+    let displayedTopics = '';
+    for (let i = 0; i < story.topics.length; i++) {
+      if (i !== story.topics.length - 1) {
+        displayedTopics = displayedTopics + story.topics[i].name + ' & ';
+      } else {
+        displayedTopics = displayedTopics + story.topics[i].name;
+      }
+    }
+    return displayedTopics;
+  };
+  return (
+    <ScrollView>
+      <StoryImage style={styles.image} source={getImage(story)} />
+      <Text
+        accessible={true}
+        accessibilityLabel={getHeadLine(story)}
+        accessibilityHint="Detailed news">
+        {getHeadLine(story)}
+      </Text>
+      <Text
+        accessible={true}
+        accessibilityLabel={`${moment(story.published_date).format(
+          'MM/DD/YYYY',
+        )} - ${renderTopics()}`}
+        accessibilityHint="Publish date and topics">
+        {moment(story.published_date).format('MM/DD/YYYY')} - {renderTopics()}
+      </Text>
+      <Text
+        accessible={true}
+        accessibilityLabel={renderAuthors(story)}
+        accessibilityHint="Author of this news">
+        {renderAuthors(story)}
+      </Text>
+      <Text
+        accessible={true}
+        accessibilityLabel={getBody()}
+        accessibilityHint="News in details">
+        {getBody()}
+      </Text>
+      <TouchableOpacity
+        accessible={true}
+        accessibilityLabel="Go to axios.com"
+        accessibilityHint="Open axios news website"
+        onPress={() => Linking.openURL('https://www.axios.com/')}>
+        <View style={styles.row}>
+          <Image style={styles.icon} source={doorIcon} />
+          <Text>Visit Axios.com</Text>
         </View>
-    );
+      </TouchableOpacity>
+    </ScrollView>
+  );
 };
 
 const styles = StyleSheet.create({
-
+  image: {
+    height: 200,
+    width: '100%',
+  },
+  icon: {
+    height: 20,
+    width: 20,
+  },
+  row: {
+    flexDirection: 'row',
+  },
 });
 
 export default Headline;
-// export default function App() {
-//     const [userId, setUserId] = useState(1);
-//     const [user, setUser] = useState(null);
-//     const [isLoading, setIsLoading] = useState(false);
-//     const [hasError, setErrorFlag] = useState(false);
-//     const changeUserIdHandler = () => {
-//         setUserId((userId) => (userId === 3 ? 1 : userId + 1));
-//     };
-//     useEffect(() => {
-//         const source = axios.CancelToken.source();
-//         const url = `${baseUrl}/api/users/${userId}`;
-//         const fetchUsers = async () => {
-//             try {
-//                 setIsLoading(true);
-//                 const response = await axios.get(url, { cancelToken: source.token });
-//                 if (response.status === 200) {
-//                     setUser(response.data.data);
-//                     setIsLoading(false);
-//                     return;
-//                 } else {
-//                     throw new Error("Failed to fetch users");
-//                 }
-//             } catch (error) {
-//                 if(axios.isCancel(error)){
-//                     console.log('Data fetching cancelled');
-//                 }else{
-//                     setErrorFlag(true);
-//                     setIsLoading(false);
-//                 }
-//             }
-//         };
-//         fetchUsers();
-//         return () => source.cancel("Data fetching cancelled");
-//     }, [userId]);
-//     return (
-//         <ScrollView contentContainerStyle={styles.container}>
-//             <View style={styles.wrapperStyle}>
-//                 {!isLoading && !hasError && user && <User userObject={user} />}
-//             </View>
-//             <View style={styles.wrapperStyle}>
-//                 {isLoading && <Text> Loading </Text>}
-//                 {!isLoading && hasError && <Text> An error has occurred </Text>}
-//             </View>
-//             <View>
-//                 <Button
-//                     title="Load user"
-//                     onPress={changeUserIdHandler}
-//                     disabled={isLoading}
-//                     style={styles.buttonStyles}
-//                 />
-//             </View>
-//         </ScrollView>
-//     );
-// }
