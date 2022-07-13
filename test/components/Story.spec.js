@@ -2,7 +2,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import Story from '../../src/components/Story';
 
-describe('Testing IStory component', () => {
+describe('Testing Story component', () => {
   const baseProps = {
     image: '',
     headline: 'IStory headline',

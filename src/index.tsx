@@ -6,7 +6,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {THEME as theme} from './styles/theme';
 const Stack = createNativeStackNavigator();
 
-//TODO list
+// TODO list
 // 1/ Parse out the DraftJS to render the body text with HTML markup.
 // 2/ Write more unit test.
 // 3/ I'd like to use local storage to save UUIDs list and story content of those UUIDs.

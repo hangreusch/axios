@@ -16,12 +16,12 @@ import {IStory} from '../models';
 
 const Stories: React.FC = () => {
   const navigation = useNavigation();
-  const [storiesList, setStoriesList] = useState([]);
+  const [storiesList, setStoriesList] = useState<IStory[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
 
   const onStoryClicked = (story: IStory) => {
-    navigation.navigate('Headline', {story: story});
+    navigation.navigate('Headline', {story: story}); //TODO fix this type complaint
   };
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const Stories: React.FC = () => {
           for (let i = 0; i < idList.length; i++) {
             getStoryByIds.push(getContent(idList[i]));
           }
-          const list = await Promise.all(getStoryByIds);
+          const list: IStory[] = await Promise.all(getStoryByIds);
           setStoriesList(list);
           setIsLoading(false);
         } else {
