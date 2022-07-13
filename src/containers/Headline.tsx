@@ -13,9 +13,14 @@ import StoryImage from '../components/StoryImage';
 import {getHeadLine, getImage, renderAuthors} from '../utils/storyUtils';
 import {doorIcon} from '../assets';
 import {THEME as theme} from '../styles/theme';
+import {Story} from '../models';
 
 interface HeadlineProps {
-  route: any;
+  route: {
+    params: {
+      story: Story;
+    };
+  };
 }
 
 const Headline: React.FC<HeadlineProps> = ({route}) => {

@@ -2,12 +2,13 @@ import React from 'react';
 import {StyleSheet, TouchableOpacity, Text, View} from 'react-native';
 import StoryImage from './StoryImage';
 import {THEME as theme} from '../styles/theme';
+import {Author} from '../models';
 
 interface StoryProps {
   image: string;
   headline: string;
-  authors: unknown[];
-  onStoryClicked: (id: number) => boolean; //arg is object, return navigation
+  authors: Author[];
+  onStoryClicked: (story: any) => void;
 }
 
 const Story: React.FC<StoryProps> = ({

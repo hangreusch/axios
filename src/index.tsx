@@ -8,8 +8,20 @@ import {THEME as theme} from './styles/theme';
 const Stack = createNativeStackNavigator();
 
 //TODO
-// Parse out the DraftJS to render the body text with HTML markup
-// save to local storage, find id difference to get new data
+// 1/ Parse out the DraftJS to render the body text with HTML markup
+// 2/ I like to use local storage to save UUIDs list and story content of those UUIDs
+// first time launch app, get data from stream api (return UUID list) and content api (return story details)
+// save this data to local storage using AsyncStorage,
+// later app relaunch, get data from stream api (return UUID list), then find what id difference between api response and local storage
+// then only call content api for different UUID to get new data
+// and save this new UUID list and save new content of to local storage, remove old content based on story.id not exist from stream api response
+// by this way, we save api to call redundantly, and less loading time for user
+// I think if we know popular story list will change up to a certain period of time (for example, 15 days)
+// we can save timestamp of app launch to local storage
+// when app relaunch, we compare difference = currentTimeStamp - timeStampInLocalStorage
+// if difference > 15 days, no need to check localStorage after call stream api
+// it means app will call stream api, and content api for all UUID, save to local storage for fresh data.
+
 const App: React.FC = () => {
   return (
     <NavigationContainer>
