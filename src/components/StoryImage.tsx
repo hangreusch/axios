@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Image, ViewPropTypes} from 'react-native';
+import {Image, ViewPropTypes, View} from 'react-native';
 import _ from 'lodash';
 import moment from 'moment';
 import {unavailableImage} from '../assets';
@@ -25,12 +25,13 @@ const StoryImage: React.FC<StoryImageProps> = ({source, style}) => {
     const loadTime = startTime
       ? moment().valueOf() - startTime
       : 'startTime unavailable';
-    console.warn('StoryImage load error', {
-      url: source,
-      loadTime,
-      reason,
-      error,
-    });
+    // placeholder: assume the app has production board, log this to production board
+    // ('StoryImage load error', {
+    //   url: source,
+    //   loadTime,
+    //   reason,
+    //   error,
+    // });
   };
 
   const onLoadStart = () => {
@@ -40,30 +41,44 @@ const StoryImage: React.FC<StoryImageProps> = ({source, style}) => {
   const onLoad = () => {
     const loadTime = moment().valueOf() - startTime;
     if (loadTime > SLOW_RENDER_THRESHOLD_MS) {
-      console.warn('StoryImage render threshold exceeded', {
-        url: source,
-        loadTime,
-        SLOW_RENDER_THRESHOLD_MS,
-      });
-    }
-  };
-
-  const getImage = () => {
-    if (_.isEmpty(source) || imageLoadFailure) {
-      return unavailableImage;
-    } else {
-      return {uri: source};
+      // placeholder: assume the app has production board, log this to production board
+      // ('StoryImage render threshold exceeded', {
+      //   url: source,
+      //   loadTime,
+      //   SLOW_RENDER_THRESHOLD_MS,
+      // });
     }
   };
 
   return (
-    <Image
-      style={style}
-      source={getImage()}
-      onError={onError}
-      onLoadStart={onLoadStart}
-      onLoad={onLoad}
-    />
+    <View>
+      {_.isEmpty(source) || imageLoadFailure ? (
+        <View
+          style={{
+            width: 200,
+            height: 100,
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Image
+            style={{width: 50, height: 50}}
+            source={unavailableImage}
+            onError={onError}
+            onLoadStart={onLoadStart}
+            onLoad={onLoad}
+          />
+        </View>
+      ) : (
+        <Image
+          style={style}
+          source={{uri: source}}
+          onError={onError}
+          onLoadStart={onLoadStart}
+          onLoad={onLoad}
+        />
+      )}
+    </View>
   );
 };
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity, Text, View} from 'react-native';
 import StoryImage from './StoryImage';
+import {THEME as theme} from '../styles/theme';
 
 interface StoryProps {
   image: string;
@@ -24,8 +25,8 @@ const Story: React.FC<StoryProps> = ({
       <View style={styles.storyContainer}>
         <StoryImage style={styles.image} source={image} />
         <View style={styles.column}>
-          <Text style={{paddingBottom: 20}}>{headline}</Text>
-          <Text>{authors}</Text>
+          <Text style={styles.headline}>{headline}</Text>
+          <Text style={styles.author}>{authors}</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -35,13 +36,27 @@ const Story: React.FC<StoryProps> = ({
 const styles = StyleSheet.create({
   image: {
     height: 100,
-    width: 100,
+    width: 200,
   },
   storyContainer: {
     flexDirection: 'row',
   },
+  headline: {
+    paddingBottom: 10,
+    fontWeight: theme.boldFont,
+    fontSize: theme.smallFontSize,
+    color: theme.textGrayColor,
+  },
+  author: {
+    fontSize: theme.smallFontSize,
+    color: theme.textGrayColor,
+    fontStyle: 'italic',
+  },
   column: {
-    paddingLeft: 15,
+    paddingLeft: 10,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

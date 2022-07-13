@@ -10,6 +10,7 @@ import {getArticleList, getContent} from '../services/AxiosServices';
 import Story from '../components/Story';
 import {useNavigation} from '@react-navigation/native';
 import {getHeadLine, getImage, renderAuthors} from '../utils/storyUtils';
+import {THEME as theme} from '../styles/theme';
 
 const Stories: React.FC = () => {
   const navigation = useNavigation();
@@ -32,7 +33,7 @@ const Stories: React.FC = () => {
           for (let i = 0; i < idList.length; i++) {
             getStoryByIds.push(getContent(idList[i]));
           }
-          const list = await Promise.all(getStoryByIds); //TODO save to local storage, find id difference to get new data
+          const list = await Promise.all(getStoryByIds);
           setStoriesList(list);
           setIsLoading(false);
         } else {
@@ -91,7 +92,7 @@ const Stories: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: theme.whiteColor,
     padding: 15,
   },
   separator: {

@@ -1,15 +1,13 @@
-
-
 const renderAuthors = (story) => {
-    let string = '';
-    for (let i = 0; i < story.authors.length; i++) {
-        if (i !== story.authors.length - 1) {
-            string = string + story.authors[i].display_name + ' & ';
-        } else {
-            string = string + story.authors[i].display_name;
-        }
+  let string = '';
+  for (let i = 0; i < story.authors.length; i++) {
+    if (i !== story.authors.length - 1) {
+      string = string + story.authors[i].display_name + ' & ';
+    } else {
+      string = string + story.authors[i].display_name;
     }
-    return string;
+  }
+  return string;
 };
 
 const getImage = (story) => {
@@ -20,4 +18,4 @@ const getHeadLine = (story) => {
   return story.headline;
 };
 
-export { renderAuthors, getImage, getHeadLine};
+export {renderAuthors, getImage, getHeadLine};
