@@ -7,18 +7,21 @@ import {
   Image,
   TouchableOpacity,
   Linking,
+  ViewStyle,
+  ImageStyle,
+  TextStyle,
 } from 'react-native';
 import moment from 'moment';
 import StoryImage from '../components/StoryImage';
 import {getHeadLine, getImage, renderAuthors} from '../utils/storyUtils';
 import {doorIcon} from '../assets';
 import {THEME as theme} from '../styles/theme';
-import {Story} from '../models';
+import {IStory} from '../models';
 
 interface HeadlineProps {
   route: {
     params: {
-      story: Story;
+      story: IStory;
     };
   };
 }
@@ -70,7 +73,7 @@ const Headline: React.FC<HeadlineProps> = ({route}) => {
           style={styles.subLine}
           accessible={true}
           accessibilityLabel={renderAuthors(story)}
-          accessibilityHint="Author of this news">
+          accessibilityHint="IAuthor of this news">
           {renderAuthors(story)}
         </Text>
         <Text
@@ -96,7 +99,18 @@ const Headline: React.FC<HeadlineProps> = ({route}) => {
   );
 };
 
-const styles = StyleSheet.create({
+interface Styles {
+  container: ViewStyle;
+  image: ImageStyle;
+  icon: ImageStyle;
+  row: ViewStyle;
+  headline: TextStyle;
+  subLine: TextStyle;
+  body: TextStyle;
+  link: TextStyle;
+}
+
+const styles = StyleSheet.create<Styles>({
   container: {
     flex: 1,
     backgroundColor: theme.whiteColor,

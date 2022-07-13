@@ -1,3 +1,3 @@
-import {Author} from './Author';
-import {Story} from './Story';
-export {Author, Story};
+import {IAuthor} from './IAuthor';
+import {IStory} from './IStory';
+export {IAuthor, IStory};

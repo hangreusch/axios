@@ -1,4 +1,4 @@
-export interface Author {
+export interface IAuthor {
   username: string;
   display_name: string;
   subscription: {

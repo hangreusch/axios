@@ -1,14 +1,22 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity, Text, View} from 'react-native';
+import {
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  View,
+  GestureResponderEvent,
+  ViewStyle,
+  ImageStyle,
+  TextStyle,
+} from 'react-native';
 import StoryImage from './StoryImage';
 import {THEME as theme} from '../styles/theme';
-import {Author} from '../models';
 
 interface StoryProps {
-  image: string;
+  image: string | undefined | null;
   headline: string;
-  authors: Author[];
-  onStoryClicked: (story: any) => void;
+  authors: string;
+  onStoryClicked: (event: GestureResponderEvent) => void;
 }
 
 const Story: React.FC<StoryProps> = ({
@@ -16,25 +24,31 @@ const Story: React.FC<StoryProps> = ({
   headline,
   authors,
   onStoryClicked,
-}) => {
-  return (
-    <TouchableOpacity
-      accessible={true}
-      accessibilityLabel={`${headline} written by ${authors}`}
-      accessibilityHint="Open detailed news"
-      onPress={onStoryClicked}>
-      <View style={styles.storyContainer}>
-        <StoryImage style={styles.image} source={image} />
-        <View style={styles.column}>
-          <Text style={styles.headline}>{headline}</Text>
-          <Text style={styles.author}>{authors}</Text>
-        </View>
+}) => (
+  <TouchableOpacity
+    accessible={true}
+    accessibilityLabel={`${headline} written by ${authors}`}
+    accessibilityHint="Open detailed news"
+    onPress={onStoryClicked}>
+    <View style={styles.storyContainer}>
+      <StoryImage style={styles.image} source={image} />
+      <View style={styles.column}>
+        <Text style={styles.headline}>{headline}</Text>
+        <Text style={styles.author}>{authors}</Text>
       </View>
-    </TouchableOpacity>
-  );
-};
+    </View>
+  </TouchableOpacity>
+);
 
-const styles = StyleSheet.create({
+interface Styles {
+  storyContainer: ViewStyle;
+  image: ImageStyle;
+  headline: TextStyle;
+  author: TextStyle;
+  column: ViewStyle;
+}
+
+const styles = StyleSheet.create<Styles>({
   image: {
     height: 100,
     width: 200,

@@ -5,12 +5,14 @@ import {
   FlatList,
   View,
   ActivityIndicator,
+  ViewStyle,
 } from 'react-native';
 import {getArticleList, getContent} from '../services/AxiosServices';
 import Story from '../components/Story';
 import {useNavigation} from '@react-navigation/native';
 import {getHeadLine, getImage, renderAuthors} from '../utils/storyUtils';
 import {THEME as theme} from '../styles/theme';
+import {IStory} from '../models';
 
 const Stories: React.FC = () => {
   const navigation = useNavigation();
@@ -18,7 +20,7 @@ const Stories: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
 
-  const onStoryClicked = (story) => {
+  const onStoryClicked = (story: IStory) => {
     navigation.navigate('Headline', {story: story});
   };
 
@@ -37,6 +39,8 @@ const Stories: React.FC = () => {
           setStoriesList(list);
           setIsLoading(false);
         } else {
+          // placeholder: assume the app has production board, log this to production board
+          // log('Failed to fetch stories list');
           throw new Error('Failed to fetch stories list');
         }
       } catch {
@@ -73,7 +77,7 @@ const Stories: React.FC = () => {
           accessibilityLabel="News list"
           accessibilityHint="List of popular news"
           data={storiesList}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item: IStory) => item.id}
           ItemSeparatorComponent={() => <View style={styles.separator} />}
           renderItem={({item}) => (
             <Story
@@ -89,7 +93,13 @@ const Stories: React.FC = () => {
   );
 };
 
-const styles = StyleSheet.create({
+interface Styles {
+  container: ViewStyle;
+  separator: ViewStyle;
+  center: ViewStyle;
+}
+
+const styles = StyleSheet.create<Styles>({
   container: {
     flex: 1,
     backgroundColor: theme.whiteColor,

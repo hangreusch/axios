@@ -9,7 +9,7 @@ const getArticleList = async () => {
   return response;
 };
 
-const getContent = async (id) => {
+const getContent = async (id: string) => {
   const configurationObject = {
     method: 'get',
     url: `${'https://api.axios.com/api/render/content/'}${id}`,

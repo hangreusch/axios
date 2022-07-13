@@ -1,4 +1,6 @@
-const renderAuthors = (story) => {
+import {IStory} from '../models';
+
+const renderAuthors = (story: IStory) => {
   let string = '';
   for (let i = 0; i < story.authors.length; i++) {
     if (i !== story.authors.length - 1) {
@@ -10,11 +12,11 @@ const renderAuthors = (story) => {
   return string;
 };
 
-const getImage = (story) => {
+const getImage = (story: IStory) => {
   return story.primary_image?.base_image_url;
 };
 
-const getHeadLine = (story) => {
+const getHeadLine = (story: IStory) => {
   return story.headline;
 };
 

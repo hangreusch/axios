@@ -1,7 +1,8 @@
-import {Author} from './Author';
-export interface Story {
+import {IAuthor} from './IAuthor';
+export interface IStory {
+  id: string;
   headline: string;
-  authors: Author[];
+  authors: IAuthor[];
   blocks: {
     blocks: [
       {

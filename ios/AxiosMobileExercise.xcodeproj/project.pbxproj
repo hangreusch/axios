@@ -160,7 +160,6 @@
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				144C354A63378DF77329652F /* [CP] Embed Pods Frameworks */,
 				F98E842BF65607DD3D0B27E5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -183,7 +182,6 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				CF9506AA7014EE7DE13F5125 /* [CP] Embed Pods Frameworks */,
 				C4F2DCA6171320E963A6CD9E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -265,23 +263,6 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		144C354A63378DF77329652F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AxiosMobileExercise-AxiosMobileExerciseTests/Pods-AxiosMobileExercise-AxiosMobileExerciseTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AxiosMobileExercise-AxiosMobileExerciseTests/Pods-AxiosMobileExercise-AxiosMobileExerciseTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AxiosMobileExercise-AxiosMobileExerciseTests/Pods-AxiosMobileExercise-AxiosMobileExerciseTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		C4F2DCA6171320E963A6CD9E /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -297,23 +278,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AxiosMobileExercise/Pods-AxiosMobileExercise-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CF9506AA7014EE7DE13F5125 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AxiosMobileExercise/Pods-AxiosMobileExercise-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AxiosMobileExercise/Pods-AxiosMobileExercise-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AxiosMobileExercise/Pods-AxiosMobileExercise-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DA571EA76258AD07C85E09BF /* [CP] Check Pods Manifest.lock */ = {

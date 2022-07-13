@@ -4,10 +4,9 @@ import Headline from './containers/Headline';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {THEME as theme} from './styles/theme';
-
 const Stack = createNativeStackNavigator();
 
-//TODO
+//TODO list
 // 1/ Parse out the DraftJS to render the body text with HTML markup
 // 2/ I like to use local storage to save UUIDs list and story content of those UUIDs
 // first time launch app, get data from stream api (return UUID list) and content api (return story details)
@@ -21,6 +20,7 @@ const Stack = createNativeStackNavigator();
 // when app relaunch, we compare difference = currentTimeStamp - timeStampInLocalStorage
 // if difference > 15 days, no need to check localStorage after call stream api
 // it means app will call stream api, and content api for all UUID, save to local storage for fresh data.
+// 3/ Write more unit test
 
 const App: React.FC = () => {
   return (

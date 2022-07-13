@@ -1,5 +1,11 @@
 import React, {useState} from 'react';
-import {Image, ViewPropTypes, View} from 'react-native';
+import {
+  Image,
+  View,
+  ImageStyle,
+  NativeSyntheticEvent,
+  ImageErrorEventData,
+} from 'react-native';
 import _ from 'lodash';
 import moment from 'moment';
 import {unavailableImage} from '../assets';
@@ -7,26 +13,26 @@ import {unavailableImage} from '../assets';
 const SLOW_RENDER_THRESHOLD_MS = 1000;
 
 interface StoryImageProps {
-  source?: string;
-  style: ViewPropTypes.style;
+  source: string | undefined | null;
+  style: ImageStyle;
 }
 
 const StoryImage: React.FC<StoryImageProps> = ({source, style}) => {
   const [imageLoadFailure, setImageLoadFailure] = useState(false);
-  const [startTime, setStartTime] = useState(null);
+  const [startTime, setStartTime] = useState(0);
 
-  const onError = (rawError) => {
+  const onError = (rawError: NativeSyntheticEvent<ImageErrorEventData>) => {
     const error = _.get(rawError, 'nativeEvent.error', '');
     setImageLoadFailure(true);
-    let reason = 'general_network';
+    let reason = 'general_network'; //use to log
     if (error.includes('code=404')) {
       reason = 'image_404';
     }
     const loadTime = startTime
       ? moment().valueOf() - startTime
-      : 'startTime unavailable';
+      : 'startTime unavailable'; //use to log
     // placeholder: assume the app has production board, log this to production board
-    // ('StoryImage load error', {
+    // log('StoryImage load error', {
     //   url: source,
     //   loadTime,
     //   reason,
@@ -42,7 +48,7 @@ const StoryImage: React.FC<StoryImageProps> = ({source, style}) => {
     const loadTime = moment().valueOf() - startTime;
     if (loadTime > SLOW_RENDER_THRESHOLD_MS) {
       // placeholder: assume the app has production board, log this to production board
-      // ('StoryImage render threshold exceeded', {
+      // log('StoryImage render threshold exceeded', {
       //   url: source,
       //   loadTime,
       //   SLOW_RENDER_THRESHOLD_MS,

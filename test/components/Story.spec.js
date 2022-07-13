@@ -2,10 +2,10 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import Story from '../../src/components/Story';
 
-describe('Testing Story component', () => {
+describe('Testing IStory component', () => {
   const baseProps = {
     image: '',
-    headline: 'Story headline',
+    headline: 'IStory headline',
     authors: 'Hang Reusch',
     onStoryClicked: () => {},
   };
