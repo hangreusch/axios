@@ -1,3 +1,19 @@
+# Android screenshots:
+
+<img width="448" alt="Screen Shot 2022-07-13 at 4 52 50 PM" src="https://user-images.githubusercontent.com/10924466/178846435-56d932f4-0bb4-4826-986b-5a4c42dc04a6.png">
+
+<img width="426" alt="Screen Shot 2022-07-13 at 4 53 16 PM" src="https://user-images.githubusercontent.com/10924466/178846458-2bbfaae1-ae45-41ff-b28a-9a35454bee63.png">
+
+<img width="423" alt="Screen Shot 2022-07-13 at 4 53 29 PM" src="https://user-images.githubusercontent.com/10924466/178846487-32246320-8ade-47f7-99f5-d568556fde7c.png">
+
+# iOS screenshots:
+
+<img width="434" alt="Screen Shot 2022-07-13 at 4 58 37 PM" src="https://user-images.githubusercontent.com/10924466/178846579-57772f77-770b-43ea-b7e3-da4f9760ea82.png">
+
+<img width="440" alt="Screen Shot 2022-07-13 at 4 58 55 PM" src="https://user-images.githubusercontent.com/10924466/178846594-2bb5d5fe-726c-4104-916f-9b8de6efd0d8.png">
+
+<img width="440" alt="Screen Shot 2022-07-13 at 4 59 13 PM" src="https://user-images.githubusercontent.com/10924466/178846614-1ae98c7c-8b62-48b1-95b1-797582045438.png">
+
 # Axios Mobile Excerise
 Axios has a lot of award-winning journalism, and sometimes it doesn't all fit on one page, so we have to help readers easily find and read the stories they want. Your challenge is to build a mobile listicle view that displays various stories and navigates to the full view of the story.
 
